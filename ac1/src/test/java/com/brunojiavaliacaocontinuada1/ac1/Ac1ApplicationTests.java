@@ -1,4 +1,4 @@
-package com.brunojiac1.ac1;
+package com.brunojiavaliacaocontinuada1.ac1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
