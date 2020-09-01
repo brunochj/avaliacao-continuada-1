@@ -1,13 +1,14 @@
 package com.brunojiavaliacaocontinuada1.ac1;
 
 public class EscaladorBoulder extends Escalador{
-    private Double forca, flexibilidade, explosao;
+    private Double forca, flexibilidade, explosao, ranking;
 
     public EscaladorBoulder(String nome, Double forca, Double flexibilidade, Double explosao) {
         super(nome);
         this.forca = forca;
         this.flexibilidade = flexibilidade;
         this.explosao = explosao;
+        this.ranking = calcRanking();
     }
 
     @Override
@@ -23,6 +24,14 @@ public class EscaladorBoulder extends Escalador{
                 "Flexibilidade: " + flexibilidade + "\n" +
                 "Explosão: " + explosao + "\n" +
                 "Ranking: " + this.calcRanking();
+    }
+
+    public Double getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(Double ranking) {
+        this.ranking = ranking;
     }
 
     public Double getForca() {

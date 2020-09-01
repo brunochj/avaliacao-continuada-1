@@ -23,14 +23,24 @@ public class Abee {
         return escaladores;
     }
 
-    @PostMapping("/cadastrar/EscaladorBoulder")
-    public void cadastrar(@RequestBody EscaladorBoulder escaladorBoulder){
-        escaladores.add(escaladorBoulder);
-    }
-
     @GetMapping("/recuperar/{id}")
     public Escalador getEscalador(@PathVariable int id){
         return escaladores.get(id - 1);
+    }
+
+    @PostMapping("/cadastrar/EscaladorBoulder")
+    public void cadastrarBoulder(@RequestBody EscaladorBoulder escaladorBoulder){
+        escaladores.add(escaladorBoulder);
+    }
+
+    @PostMapping("/cadastrar/EscaladorGuiado")
+    public void cadastrarGuiado(@RequestBody EscaladorGuiado escaladorGuiado){
+        escaladores.add(escaladorGuiado);
+    }
+
+    @PostMapping("/cadastrar/EscaladorVelocidade")
+    public void cadastrarVelocidade(@RequestBody EscaladorVelocidade escaladorVelocidade){
+        escaladores.add(escaladorVelocidade);
     }
 
     @DeleteMapping("/deletar/{id}")
