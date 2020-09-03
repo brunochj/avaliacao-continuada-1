@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/escaladores")
-public class Abee {
+public class AbeeCtrl {
     // obs: ABEE = Associação Brasileira de Escalada Esportiva
     List<Escalador> escaladores = new ArrayList<>();
 //    List<Escalador> escaladores = Arrays.asList(
@@ -18,33 +19,40 @@ public class Abee {
 //            new EscaladorBoulder("Ji", 8.0, 7.5, 9.0)
 //    );
 
-    @GetMapping("/listar")
+    @GetMapping
     public List<Escalador> getEscaladores(){
         return escaladores;
     }
 
-    @GetMapping("/recuperar/{id}")
+    @GetMapping("/{id}")
     public Escalador getEscalador(@PathVariable int id){
         return escaladores.get(id - 1);
     }
 
-    @PostMapping("/cadastrar/EscaladorBoulder")
+    @PostMapping("/EscaladorBoulder")
     public void cadastrarBoulder(@RequestBody EscaladorBoulder escaladorBoulder){
         escaladores.add(escaladorBoulder);
     }
 
-    @PostMapping("/cadastrar/EscaladorGuiado")
+    @PostMapping("/EscaladorGuiado")
     public void cadastrarGuiado(@RequestBody EscaladorGuiado escaladorGuiado){
         escaladores.add(escaladorGuiado);
     }
 
-    @PostMapping("/cadastrar/EscaladorVelocidade")
+    @PostMapping("/EscaladorVelocidade")
     public void cadastrarVelocidade(@RequestBody EscaladorVelocidade escaladorVelocidade){
         escaladores.add(escaladorVelocidade);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public void deleteEscalador(@PathVariable int id){
         escaladores.remove(id - 1);
+    }
+
+    @GetMapping("/convocados")
+    public List getConvocados(){
+        return escaladores.stream()
+                .filter(escalador -> escalador.calcPontos() >= 7.0)
+                .collect(Collectors.toList());
     }
 }

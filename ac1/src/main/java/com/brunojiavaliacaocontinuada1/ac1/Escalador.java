@@ -7,7 +7,7 @@ public abstract class Escalador {
         this.nome = nome;
     }
 
-    public abstract Double calcRanking();
+    public abstract Double calcPontos();
 
     @Override
     public String toString() {
